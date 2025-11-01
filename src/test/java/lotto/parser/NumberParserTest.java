@@ -20,4 +20,11 @@ class NumberParserTest {
         assertThatThrownBy(() -> NumberParser.parse("   "))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("NULL 값을 파싱하려 하면 예외가 발생한다.")
+    @Test
+    void parse_withNull_shouldThrowException() {
+        assertThatThrownBy(() -> NumberParser.parse(null))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
