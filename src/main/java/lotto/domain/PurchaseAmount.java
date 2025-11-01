@@ -2,13 +2,16 @@ package lotto.domain;
 
 public class PurchaseAmount {
 
-    public PurchaseAmount(String input) {
-        validate(input);
+    private final int amount;
+
+    public PurchaseAmount(int amount) {
+        validate(amount);
+        this.amount = amount;
     }
 
-    private void validate(String input) {
-        if (input.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액을 입력해 주세요.");
+    private void validate(int amount) {
+        if (amount % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
         }
     }
 }
