@@ -7,10 +7,10 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class PurchaseAmountTest {
 
-    @DisplayName("구입 금액으로 빈 문자열을 입력하면 예외가 발생한다.")
+    @DisplayName("구입 금액이 1000원으로 나누어떨어지지 않으면 예외가 발생한다.")
     @Test
-    void createPurchaseAmount_withEmptyString_shouldThrowException() {
-        assertThatThrownBy(() -> new PurchaseAmount(""))
+    void createPurchaseAmount_withNonMultipleOf1000_shouldThrowException() {
+        assertThatThrownBy(() -> new PurchaseAmount(1500))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
