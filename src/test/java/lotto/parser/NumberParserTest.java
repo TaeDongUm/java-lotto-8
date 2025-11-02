@@ -21,6 +21,13 @@ class NumberParserTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("숫자가 아닌 문자/기호가 섞인 입력은 예외가 발생한다.")
+    @Test
+    void parse_withNonNumericInput_shouldThrowException() {
+        assertThatThrownBy(() -> NumberParser.parse("1000a"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("NULL 값을 파싱하려 하면 예외가 발생한다.")
     @Test
     void parse_withNull_shouldThrowException() {
