@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -27,5 +28,19 @@ class LottoTest {
     void createLottoWithOutOfRangeNumber() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호가 오름차순으로 정렬된 상태로 보관된다.")
+    @Test
+    void createLottoWithUnsortedNumbers_shouldStoreSorted() {
+        // given
+        List<Integer> unsortedNumbers = List.of(6, 5, 4, 3, 2, 1);
+        Lotto lotto = new Lotto(unsortedNumbers);
+
+        // when
+        List<Integer> sortedNumbers = lotto.getNumbers();
+
+        // then
+        assertThat(sortedNumbers).isSorted();
     }
 }
