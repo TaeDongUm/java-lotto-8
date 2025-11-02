@@ -3,10 +3,13 @@ package lotto.parser;
 public class NumberParser {
 
     public static int parse(String input) {
-        if (input.isBlank() || input == null) {
-            throw new IllegalArgumentException("[ERROR] 입력값이 비어있습니다.");
+        if (input == null || input.isBlank()) {
+            throw new IllegalArgumentException("[ERROR] 입력값이 비어있거나 공백입니다.");
         }
-
-        return 0; // 임시 반환
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 입력값이 숫자가 아닙니다.");
+        }
     }
 }
