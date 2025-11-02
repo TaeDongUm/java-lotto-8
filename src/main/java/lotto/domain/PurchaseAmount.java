@@ -14,4 +14,8 @@ public class PurchaseAmount {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위의 양수여야 합니다.");
         }
     }
+
+    public int calculateLottoCount() {
+        return amount / 1000;
+    }
 }
