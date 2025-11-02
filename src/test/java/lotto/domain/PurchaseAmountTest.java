@@ -20,4 +20,11 @@ class PurchaseAmountTest {
         assertThatThrownBy(() -> new PurchaseAmount(0))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("구입 금액으로 로또 개수를 올바르게 계산한다.")
+    @Test
+    void calculateLottoCount_withValidAmount_shouldReturnCorrectCount() {
+        PurchaseAmount purchaseAmount = new PurchaseAmount(8000);
+        org.assertj.core.api.Assertions.assertThat(purchaseAmount.calculateLottoCount()).isEqualTo(8);
+    }
 }
