@@ -13,4 +13,11 @@ class PurchaseAmountTest {
         assertThatThrownBy(() -> new PurchaseAmount(1500))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("구입 금액이 0 이하일 경우 예외가 발생한다.")
+    @Test
+    void createPurchaseAmount_withNonPositiveAmount_shouldThrowException() {
+        assertThatThrownBy(() -> new PurchaseAmount(0))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
