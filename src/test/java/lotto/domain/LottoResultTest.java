@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import java.util.Map;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LottoResultTest {
@@ -37,5 +39,22 @@ class LottoResultTest {
 
         // then
         assertThat(profitRate).isEqualTo(62.5);
+    }
+
+    @DisplayName("등수 목록으로 각 등수의 개수를 정확히 계산한다.")
+    @Test
+    void getRankCounts_shouldReturnCorrectCounts() {
+        // given
+        List<LottoRank> ranks = List.of(LottoRank.FIFTH, LottoRank.MISS, LottoRank.FOURTH, LottoRank.MISS, LottoRank.FIFTH);
+        LottoResult result = new LottoResult(ranks);
+
+        // when
+        Map<LottoRank, Long> rankCounts = result.getRankCounts();
+
+        // then
+        assertThat(rankCounts.get(LottoRank.FIFTH)).isEqualTo(2L);
+        assertThat(rankCounts.get(LottoRank.FOURTH)).isEqualTo(1L);
+        assertThat(rankCounts.get(LottoRank.MISS)).isEqualTo(2L);
+        assertThat(rankCounts.get(LottoRank.THIRD)).isNull();
     }
 }
