@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.Lotto;
+import lotto.constant.ErrorMessage;
 
 import java.util.List;
 
@@ -33,7 +34,7 @@ public class WinningLotto {
 
     private void validate(Lotto lotto, BonusNumber bonusNumber) {
         if (lotto.getNumbers().contains(bonusNumber.getNumber())) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            throw new IllegalArgumentException(ErrorMessage.BONUS_DUPLICATE_WITH_WINNING_NUMBERS.getMessage());
         }
     }
 }

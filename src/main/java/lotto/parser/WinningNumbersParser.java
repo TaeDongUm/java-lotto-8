@@ -1,5 +1,7 @@
 package lotto.parser;
 
+import lotto.constant.ErrorMessage;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -9,11 +11,11 @@ public class WinningNumbersParser {
 
     public static List<Integer> parse(String input) {
         if (input == null || input.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호를 입력해 주세요.");
+            throw new IllegalArgumentException(ErrorMessage.INPUT_EMPTY.getMessage());
         }
         String[] tokens = input.split(DELIMITER, -1);
         if (Arrays.stream(tokens).anyMatch(String::isBlank)) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호에 빈 값은 허용되지 않습니다.");
+            throw new IllegalArgumentException(ErrorMessage.INPUT_CONTAINS_EMPTY_TOKEN.getMessage());
         }
         try {
             return Arrays.stream(tokens)
@@ -21,7 +23,7 @@ public class WinningNumbersParser {
                     .map(Integer::parseInt)
                     .toList();
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자만 입력 가능합니다.", e);
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_FORMAT.getMessage(), e);
         }
     }
 }

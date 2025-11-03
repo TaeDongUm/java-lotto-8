@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.Lotto;
+import lotto.constant.ErrorMessage;
 import lotto.domain.*;
 import lotto.parser.BonusNumberParser;
 import lotto.parser.WinningNumbersParser;
@@ -36,7 +37,7 @@ public class LottoGameController {
                 String input = inputView.readPurchaseAmount();
                 return new PurchaseAmount(Integer.parseInt(input));
             } catch (NumberFormatException e) {
-                outputView.printErrorMessage("[ERROR] 구입 금액은 유효한 숫자여야 합니다.");
+                outputView.printErrorMessage(ErrorMessage.INVALID_NUMBER_FORMAT.getMessage());
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());
             }

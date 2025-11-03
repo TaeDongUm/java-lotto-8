@@ -1,15 +1,17 @@
 package lotto.parser;
 
+import lotto.constant.ErrorMessage;
+
 public class BonusNumberParser {
 
     public static int parse(String input) {
         if (input == null || input.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호를 입력해 주세요.");
+            throw new IllegalArgumentException(ErrorMessage.INPUT_EMPTY.getMessage());
         }
         try {
             return Integer.parseInt(input.trim());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자여야 합니다.", e);
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_FORMAT.getMessage(), e);
         }
     }
 }

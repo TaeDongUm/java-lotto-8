@@ -1,15 +1,17 @@
 package lotto.parser;
 
+import lotto.constant.ErrorMessage;
+
 public class NumberParser {
 
     public static int parse(String input) {
         if (input == null || input.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 입력값이 비어있거나 공백입니다.");
+            throw new IllegalArgumentException(ErrorMessage.INPUT_EMPTY.getMessage());
         }
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 입력값이 숫자가 아닙니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_FORMAT.getMessage(), e);
         }
     }
 }
