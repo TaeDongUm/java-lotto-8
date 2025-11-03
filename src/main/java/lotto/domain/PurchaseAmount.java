@@ -18,4 +18,8 @@ public class PurchaseAmount {
     public int calculateLottoCount() {
         return amount / 1000;
     }
+
+    public int getAmount() {
+        return amount;
+    }
 }
