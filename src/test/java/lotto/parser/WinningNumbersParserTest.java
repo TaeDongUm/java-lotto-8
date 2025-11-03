@@ -30,4 +30,12 @@ class WinningNumbersParserTest {
         assertThatThrownBy(() -> WinningNumbersParser.parse(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("숫자가 아닌 토큰이 포함되어 있으면 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,a,4,5,6", "1,2,3,4,5,!"})
+    void parse_withNonNumericToken_shouldThrowException(String input) {
+        assertThatThrownBy(() -> WinningNumbersParser.parse(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
