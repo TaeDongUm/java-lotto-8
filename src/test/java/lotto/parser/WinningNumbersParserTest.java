@@ -5,6 +5,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class WinningNumbersParserTest {
@@ -37,5 +40,13 @@ class WinningNumbersParserTest {
     void parse_withNonNumericToken_shouldThrowException(String input) {
         assertThatThrownBy(() -> WinningNumbersParser.parse(input))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("토큰의 앞뒤에 공백이 있어도 정상적으로 파싱된다.")
+    @Test
+    void parse_withWhitespaceAroundTokens_shouldParseCorrectly() {
+        String input = " 1, 2, 3, 4, 5, 6 ";
+        List<Integer> expected = List.of(1, 2, 3, 4, 5, 6);
+        assertThat(WinningNumbersParser.parse(input)).isEqualTo(expected);
     }
 }
