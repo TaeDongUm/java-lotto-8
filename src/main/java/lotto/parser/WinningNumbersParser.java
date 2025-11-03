@@ -17,6 +17,7 @@ public class WinningNumbersParser {
         }
         try {
             return Arrays.stream(tokens)
+                    .map(String::trim)
                     .map(Integer::parseInt)
                     .toList();
         } catch (NumberFormatException e) {
