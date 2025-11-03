@@ -27,4 +27,11 @@ class PurchaseAmountTest {
         PurchaseAmount purchaseAmount = new PurchaseAmount(8000);
         org.assertj.core.api.Assertions.assertThat(purchaseAmount.calculateLottoCount()).isEqualTo(8);
     }
+
+    @DisplayName("getAmount가 정확한 금액을 반환한다.")
+    @Test
+    void getAmount_shouldReturnCorrectAmount() {
+        PurchaseAmount purchaseAmount = new PurchaseAmount(8000);
+        org.assertj.core.api.Assertions.assertThat(purchaseAmount.getAmount()).isEqualTo(8000);
+    }
 }
