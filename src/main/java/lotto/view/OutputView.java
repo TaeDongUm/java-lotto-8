@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.Lotto;
+import lotto.constant.Message;
 import lotto.domain.LottoRank;
 import lotto.domain.LottoResult;
 import lotto.domain.PurchaseAmount;
@@ -13,7 +14,7 @@ import java.util.Map;
 public class OutputView {
 
     public void printLottoCount(PurchaseAmount purchaseAmount) {
-        System.out.printf("\n%d개를 구매했습니다.\n", purchaseAmount.calculateLottoCount());
+        System.out.printf(Message.INFO_PURCHASE_COUNT.getMessage(), purchaseAmount.calculateLottoCount());
     }
 
     public void printLottos(List<Lotto> lottos) {
@@ -23,8 +24,8 @@ public class OutputView {
     }
 
     public void printResults(LottoResult lottoResult) {
-        System.out.println("\n당첨 통계");
-        System.out.println("---");
+        System.out.println(Message.RESULT_HEADER.getMessage());
+        System.out.println(Message.RESULT_SEPARATOR.getMessage());
 
         Map<LottoRank, Long> rankCounts = lottoResult.getRankCounts();
 
@@ -41,9 +42,9 @@ public class OutputView {
     private String formatRankMessage(LottoRank rank, long count) {
         String bonusInfo = "";
         if (rank == LottoRank.SECOND) {
-            bonusInfo = ", 보너스 볼 일치";
+            bonusInfo = Message.BONUS_MATCH_TEXT.getMessage();
         }
-        return String.format("%d개 일치%s (%,d원) - %d개",
+        return String.format(Message.RESULT_RANK_FORMAT.getMessage(),
                 rank.getMatchCount(),
                 bonusInfo,
                 rank.getPrizeMoney(),
@@ -52,7 +53,7 @@ public class OutputView {
 
     public void printProfitRate(LottoResult lottoResult, PurchaseAmount purchaseAmount) {
         double profitRate = lottoResult.getProfitRate(purchaseAmount);
-        System.out.printf("총 수익률은 %.1f%%입니다.\n", profitRate);
+        System.out.printf(Message.RESULT_PROFIT_RATE.getMessage(), profitRate);
     }
 
     public void printErrorMessage(String message) {
