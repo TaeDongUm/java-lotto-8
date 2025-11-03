@@ -15,6 +15,12 @@ public class WinningNumbersParser {
         if (Arrays.stream(tokens).anyMatch(String::isBlank)) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호에 빈 값은 허용되지 않습니다.");
         }
-        return null;
+        try {
+            return Arrays.stream(tokens)
+                    .map(Integer::parseInt)
+                    .toList();
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자만 입력 가능합니다.", e);
+        }
     }
 }
